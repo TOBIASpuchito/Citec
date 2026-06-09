@@ -1,0 +1,12 @@
+<script>
+  import { initLenis } from "@/lib/lenis";
+  import { initRevealMotion } from "@/utils/animation";
+
+  initLenis();
+  initRevealMotion();
+
+  document.addEventListener("astro:after-swap", () => {
+    initLenis();
+    initRevealMotion();
+  });
+</script>

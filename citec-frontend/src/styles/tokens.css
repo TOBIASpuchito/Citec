@@ -1,0 +1,26 @@
+:root {
+  color-scheme: light;
+  --citec-ink: #071526;
+  --citec-ink-soft: #284156;
+  --citec-navy: #0d2742;
+  --citec-blue: #164b77;
+  --citec-cyan: #62c7d9;
+  --citec-violet: #7770c9;
+  --citec-paper: #f7fbfd;
+  --citec-surface: #ffffff;
+  --citec-mist: #eef5f8;
+  --citec-line: #d8e4eb;
+  --citec-warm: #f5f1e8;
+  --citec-success: #2f8f77;
+  --citec-radius: 8px;
+  --citec-radius-lg: 18px;
+  --citec-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --citec-shadow-soft: 0 24px 70px rgba(13, 39, 66, 0.1);
+  --citec-shadow-glass: 0 18px 48px rgba(13, 39, 66, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light;
+  }
+}

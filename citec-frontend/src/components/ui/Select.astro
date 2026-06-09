@@ -1,0 +1,22 @@
+---
+interface Props {
+  label: string;
+  name: string;
+  options: string[];
+  required?: boolean;
+}
+
+const { label, name, options, required = false } = Astro.props;
+---
+
+<label class="grid gap-2 text-sm font-bold text-citec-ink">
+  <span>{label}</span>
+  <select
+    class="h-12 rounded-md border border-citec-line bg-white/82 px-3 text-sm text-citec-ink outline-none transition duration-300 ease-premium focus:border-citec-blue focus:ring-4 focus:ring-citec-cyan/20"
+    name={name}
+    required={required}
+  >
+    <option value="">Selecciona una opcion</option>
+    {options.map((option) => <option value={option}>{option}</option>)}
+  </select>
+</label>

@@ -1,0 +1,27 @@
+---
+import CTASection from "@/components/sections/CTASection.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BenefitsSection from "@/pages/_home/components/BenefitsSection.astro";
+import EventsSection from "@/pages/_home/components/EventsSection.astro";
+import FeaturedDirectory from "@/pages/_home/components/FeaturedDirectory.astro";
+import FeaturedPulse from "@/pages/_home/components/FeaturedPulse.astro";
+import HomeHero from "@/pages/_home/components/HomeHero.astro";
+import TrustBar from "@/pages/_home/components/TrustBar.astro";
+import ValueProposition from "@/pages/_home/components/ValueProposition.astro";
+import { absoluteUrl, breadcrumbJsonLd } from "@/utils/seo";
+---
+
+<BaseLayout
+  title="CITEC | Camara de Innovacion y Tecnologia Ecuatoriana"
+  description="CITEC conecta empresas, regulacion, talento e innovacion a traves de un hub digital institucional para el ecosistema tecnologico ecuatoriano."
+  jsonLd={[breadcrumbJsonLd([{ name: "Inicio", url: absoluteUrl("/") }])]}
+>
+  <HomeHero />
+  <TrustBar />
+  <ValueProposition />
+  <FeaturedDirectory />
+  <FeaturedPulse />
+  <BenefitsSection />
+  <EventsSection />
+  <CTASection />
+</BaseLayout>

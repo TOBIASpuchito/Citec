@@ -1,0 +1,39 @@
+---
+import CTASection from "@/components/sections/CTASection.astro";
+import EventCard from "@/components/sections/EventCard.astro";
+import SectionHeader from "@/components/ui/SectionHeader.astro";
+import { events } from "@/data/events";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { absoluteUrl, breadcrumbJsonLd, eventJsonLd } from "@/utils/seo";
+---
+
+<BaseLayout
+  title="Actividad del ecosistema: mesas, foros y workshops."
+  description="Encuentros con foco en tecnologia, regulacion, mercado y talento para crear agenda compartida."
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: "Inicio", url: absoluteUrl("/") },
+      { name: "Eventos", url: absoluteUrl("/eventos/") },
+    ]),
+    ...events.map((event) => eventJsonLd(event)),
+  ]}
+>
+  <section class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <div class="mx-auto max-w-7xl">
+      <SectionHeader
+        eyebrow="Agenda"
+        title="Proximas conversaciones de alto valor"
+        description="Eventos pensados para crear agenda, no solo asistencia."
+      />
+      <div class="mt-10 grid gap-5">
+        {events.map((event) => <EventCard event={event} />)}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    eyebrow="Participacion"
+    title="Participa en la actividad que define la agenda tech."
+    description="Afiliarte a CITEC permite acceder a encuentros, mesas de trabajo y conversaciones del ecosistema."
+  />
+</BaseLayout>

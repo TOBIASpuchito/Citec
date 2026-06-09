@@ -1,0 +1,7 @@
+interface:
+  display_name: "Diseno Humano Frontend"
+  short_description: "Diseno web sobrio, especifico y no generico"
+  default_prompt: "Use $human-design-frontend to review and refine a frontend screen so it feels specific, polished, and not AI-generated."
+
+policy:
+  allow_implicit_invocation: true

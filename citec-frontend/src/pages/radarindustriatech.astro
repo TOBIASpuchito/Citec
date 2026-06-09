@@ -1,0 +1,42 @@
+---
+import PulseCard from "@/components/sections/PulseCard.astro";
+import CTASection from "@/components/sections/CTASection.astro";
+import { pulsePosts } from "@/data/pulse";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { absoluteUrl, breadcrumbJsonLd, itemListJsonLd } from "@/utils/seo";
+---
+
+<BaseLayout
+  title="Radar Industria Tech"
+  description="La lectura de industria se conecta con el nuevo observatorio editorial de CITEC para ordenar senales de mercado, regulacion y talento."
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: "Inicio", url: absoluteUrl("/") },
+      { name: "Radar Industria Tech", url: absoluteUrl("/radarindustriatech/") },
+    ]),
+    itemListJsonLd(
+      "Lecturas Radar Industria Tech",
+      pulsePosts.map((post) => ({
+        name: post.title,
+        url: absoluteUrl(`/pulse/${post.slug}/`),
+        description: post.summary,
+      })),
+    ),
+  ]}
+>
+  <section class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <div class="mx-auto grid max-w-7xl gap-5 lg:grid-cols-3">
+      {pulsePosts.map((post) => <PulseCard post={post} />)}
+    </div>
+  </section>
+
+  <CTASection
+    eyebrow="Nueva etapa editorial"
+    title="Pulse concentra analisis regulatorio, mercado y talento para socios."
+    description="Explora el nuevo observatorio editorial y afiliate para acceder a lecturas ejecutivas completas."
+    primaryHref="/pulse/"
+    primaryLabel="Ir a Pulse"
+    secondaryHref="/unete/"
+    secondaryLabel="Afiliarme"
+  />
+</BaseLayout>

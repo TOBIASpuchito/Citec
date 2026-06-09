@@ -1,0 +1,20 @@
+---
+interface Props {
+  tone?: "blue" | "cyan" | "violet" | "warm" | "neutral";
+  class?: string;
+}
+
+const { tone = "neutral", class: className } = Astro.props;
+
+const tones = {
+  blue: "border-citec-blue/20 bg-citec-blue/10 text-citec-blue",
+  cyan: "border-citec-cyan/30 bg-citec-cyan/10 text-citec-blue",
+  violet: "border-citec-violet/20 bg-citec-violet/10 text-citec-navy",
+  warm: "border-citec-warm bg-citec-warm/70 text-citec-ink",
+  neutral: "border-citec-line bg-white/72 text-citec-ink-soft",
+};
+---
+
+<span class:list={["inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-bold", tones[tone], className]}>
+  <slot />
+</span>

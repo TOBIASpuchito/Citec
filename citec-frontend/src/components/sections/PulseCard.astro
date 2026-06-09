@@ -1,0 +1,36 @@
+---
+import Badge from "@/components/ui/Badge.astro";
+import type { PulsePost } from "@/data/pulse";
+
+interface Props {
+  post: PulsePost;
+  featured?: boolean;
+}
+
+const { post, featured = false } = Astro.props;
+const formattedDate = new Intl.DateTimeFormat("es-EC", {
+  day: "2-digit",
+  month: "short",
+  year: "numeric",
+}).format(new Date(`${post.date}T00:00:00`));
+---
+
+<article class:list={["group relative overflow-hidden rounded-lg border border-citec-line/80 bg-white/84 p-5 shadow-[0_16px_38px_rgba(13,39,66,0.07)] transition duration-300 ease-premium hover:-translate-y-1 hover:border-citec-violet/45 hover:shadow-glass", featured && "lg:p-7"]} data-reveal>
+  <div class="absolute right-5 top-5 h-20 w-20 rounded-full bg-citec-cyan/16 blur-2xl"></div>
+  <div class="relative">
+    <div class="flex flex-wrap items-center gap-2">
+      <Badge tone="violet">{post.category}</Badge>
+      <span class="text-xs font-bold uppercase tracking-[0.08em] text-citec-ink-soft">{formattedDate}</span>
+    </div>
+    <h3 class:list={["mt-5 font-display font-black leading-tight text-citec-ink", featured ? "text-2xl sm:text-3xl" : "text-xl"]}>
+      <a href={`/pulse/${post.slug}/`} class="after:absolute after:inset-0">
+        {post.title}
+      </a>
+    </h3>
+    <p class="mt-4 text-sm leading-7 text-citec-ink-soft">{post.summary}</p>
+    <div class="mt-6 border-t border-citec-line/70 pt-4">
+      <p class="text-xs font-black uppercase tracking-[0.12em] text-citec-blue">Insight destacado</p>
+      <p class="mt-2 text-sm leading-7 text-citec-ink">{post.insights[0]}</p>
+    </div>
+  </div>
+</article>

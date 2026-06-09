@@ -1,0 +1,31 @@
+---
+import PartnerDirectory from "@/islands/PartnerDirectory";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { partners } from "@/data/partners";
+import { absoluteUrl, breadcrumbJsonLd, itemListJsonLd } from "@/utils/seo";
+---
+
+<BaseLayout
+  title="Directorio de socios"
+  description="Explora empresas por categoria, ciudad e industria para descubrir capacidades, beneficios y oportunidades de conexion local."
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: "Inicio", url: absoluteUrl("/") },
+      { name: "Socios", url: absoluteUrl("/socios/") },
+    ]),
+    itemListJsonLd(
+      "Directorio de socios CITEC",
+      partners.map((partner) => ({
+        name: partner.name,
+        url: absoluteUrl(`/socios/${partner.slug}/`),
+        description: partner.description,
+      })),
+    ),
+  ]}
+>
+  <section class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <div class="mx-auto max-w-7xl" data-reveal>
+      <PartnerDirectory client:load />
+    </div>
+  </section>
+</BaseLayout>

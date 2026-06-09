@@ -1,0 +1,23 @@
+---
+import PartnerDirectory from "@/islands/PartnerDirectory";
+import Button from "@/components/ui/Button.astro";
+import SectionHeader from "@/components/ui/SectionHeader.astro";
+---
+
+<section class="bg-[linear-gradient(180deg,rgba(255,255,255,0.42),rgba(238,245,248,0.74))] px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+  <div class="mx-auto max-w-7xl">
+    <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      <SectionHeader
+        eyebrow="Directorio inteligente"
+        title="Socios visibles por ciudad, sector e industria."
+        description="Una experiencia filtrable y rapida para convertir el directorio en una puerta de entrada real al ecosistema."
+      />
+      <div data-reveal>
+        <Button href="/socios/" variant="secondary">Ver directorio completo</Button>
+      </div>
+    </div>
+    <div class="mt-10" data-reveal data-reveal-delay="0.08">
+      <PartnerDirectory client:visible featuredOnly limit={3} />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+---
+import { partners } from "@/data/partners";
+
+const trustedPartners = partners.slice(0, 6);
+---
+
+<section class="border-b border-citec-line/70 bg-white/64 px-4 py-8 sm:px-6 lg:px-8">
+  <div class="mx-auto flex max-w-7xl flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+    <p class="text-xs font-black uppercase tracking-[0.12em] text-citec-ink-soft">Ecosistema conectado por socios, aliados y empresas tech</p>
+    <div class="grid grid-cols-3 gap-3 sm:grid-cols-6">
+      {trustedPartners.map((partner) => (
+        <a
+          href={`/socios/${partner.slug}/`}
+          class="grid h-12 min-w-20 place-items-center rounded-md border border-citec-line bg-white/76 px-3 text-sm font-black text-citec-ink transition duration-300 ease-premium hover:-translate-y-0.5 hover:border-citec-cyan/50 hover:shadow-soft"
+          aria-label={`Ver perfil de ${partner.name}`}
+        >
+          {partner.logo}
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,41 @@
+---
+import Button from "@/components/ui/Button.astro";
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  primaryHref?: string;
+  primaryLabel?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+}
+
+const {
+  eyebrow = "Afiliacion",
+  title = "Forma parte del hub tecnologico que Ecuador necesita.",
+  description = "Conecta tu empresa con visibilidad institucional, inteligencia regulatoria, espacios de relacionamiento y oportunidades concretas dentro del ecosistema.",
+  primaryHref = "/unete/",
+  primaryLabel = "Iniciar solicitud",
+  secondaryHref = "/socios/",
+  secondaryLabel = "Ver socios",
+} = Astro.props;
+---
+
+<section class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+  <div class="relative mx-auto max-w-7xl overflow-hidden rounded-lg bg-citec-ink p-6 text-white shadow-soft sm:p-10 lg:p-14" data-reveal>
+    <div class="soft-grid absolute inset-0 opacity-10"></div>
+    <div class="absolute right-0 top-0 h-64 w-64 bg-citec-cyan/20 blur-3xl"></div>
+    <div class="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+      <div>
+        <p class="editorial-label text-citec-cyan">{eyebrow}</p>
+        <h2 class="mt-5 max-w-4xl font-display text-3xl font-black leading-tight tracking-normal sm:text-5xl">{title}</h2>
+        <p class="mt-5 max-w-2xl text-base leading-8 text-white/76">{description}</p>
+      </div>
+      <div class="flex flex-col gap-3 sm:flex-row lg:flex-col">
+        <Button href={primaryHref} variant="secondary" size="lg">{primaryLabel}</Button>
+        <Button href={secondaryHref} variant="ghost" size="lg" class="text-white hover:bg-white/10 hover:text-white">{secondaryLabel}</Button>
+      </div>
+    </div>
+  </div>
+</section>

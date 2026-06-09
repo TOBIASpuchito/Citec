@@ -1,0 +1,76 @@
+---
+import Badge from "@/components/ui/Badge.astro";
+import Button from "@/components/ui/Button.astro";
+import { pulsePosts, type PulsePost } from "@/data/pulse";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { absoluteUrl, breadcrumbJsonLd, pulseArticleJsonLd } from "@/utils/seo";
+
+export function getStaticPaths() {
+  return pulsePosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: PulsePost;
+}
+
+const { post } = Astro.props;
+const formattedDate = new Intl.DateTimeFormat("es-EC", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+}).format(new Date(`${post.date}T00:00:00`));
+const postUrl = absoluteUrl(`/pulse/${post.slug}/`);
+const articleImage = absoluteUrl("/og-image.png");
+---
+
+<BaseLayout
+  title={`${post.title} - Pulse CITEC`}
+  description={post.summary}
+  canonical={postUrl}
+  ogType="article"
+  publishedTime={post.date}
+  modifiedTime={post.date}
+  section={post.category}
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: "Inicio", url: absoluteUrl("/") },
+      { name: "Pulse", url: absoluteUrl("/pulse/") },
+      { name: post.title, url: postUrl },
+    ]),
+    pulseArticleJsonLd(post, postUrl, articleImage),
+  ]}
+>
+  <article class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.72fr_0.28fr]">
+      <div class="rounded-lg border border-citec-line/80 bg-white/86 p-6 shadow-glass sm:p-8" data-reveal>
+        <div class="flex flex-wrap items-center gap-2">
+          <Badge tone="violet">{post.category}</Badge>
+          <span class="text-xs font-black uppercase tracking-[0.08em] text-citec-ink-soft">{formattedDate}</span>
+        </div>
+        <p class="mt-8 text-xl leading-9 text-citec-ink-soft">{post.summary}</p>
+        <div class="mt-10 grid gap-4">
+          {post.insights.map((insight, index) => (
+            <section class="rounded-lg border border-citec-line bg-citec-mist/70 p-5">
+              <p class="text-xs font-black uppercase tracking-[0.12em] text-citec-blue">Insight {index + 1}</p>
+              <p class="mt-3 text-base leading-8 text-citec-ink">{insight}</p>
+            </section>
+          ))}
+        </div>
+      </div>
+
+      <aside class="h-fit rounded-lg border border-citec-line/80 bg-citec-ink p-6 text-white shadow-soft" data-reveal data-reveal-delay="0.08">
+        <p class="editorial-label text-citec-cyan">Afiliacion</p>
+        <h2 class="mt-5 font-display text-2xl font-black leading-tight">Quieres acceder al analisis completo? Afiliate a CITEC.</h2>
+        <p class="mt-4 text-sm leading-7 text-white/76">
+          Accede a lecturas ejecutivas, mesas de trabajo y oportunidades de relacionamiento.
+        </p>
+        <div class="mt-6">
+          <Button href="/unete/" variant="secondary">Afiliarme</Button>
+        </div>
+      </aside>
+    </div>
+  </article>
+</BaseLayout>

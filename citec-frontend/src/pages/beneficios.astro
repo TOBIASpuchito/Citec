@@ -1,0 +1,44 @@
+---
+import CTASection from "@/components/sections/CTASection.astro";
+import BenefitCard from "@/components/sections/BenefitCard.astro";
+import { benefits, membershipTiers } from "@/data/benefits";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import MembershipTierCard from "@/pages/_beneficios/components/MembershipTierCard.astro";
+import { absoluteUrl, breadcrumbJsonLd, itemListJsonLd } from "@/utils/seo";
+---
+
+<BaseLayout
+  title="Beneficios disenados para visibilidad, inteligencia y red."
+  description="CITEC combina presencia institucional, analisis y espacios de articulacion para que la afiliacion tenga valor continuo."
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: "Inicio", url: absoluteUrl("/") },
+      { name: "Beneficios", url: absoluteUrl("/beneficios/") },
+    ]),
+    itemListJsonLd(
+      "Beneficios de afiliacion CITEC",
+      benefits.map((benefit) => ({
+        name: benefit.title,
+        url: absoluteUrl("/beneficios/"),
+        description: benefit.description,
+      })),
+    ),
+  ]}
+>
+  <section class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <div class="mx-auto grid max-w-7xl gap-5 md:grid-cols-2 lg:grid-cols-4">
+      {benefits.map((benefit) => <BenefitCard benefit={benefit} />)}
+    </div>
+  </section>
+
+  <section class="bg-white/68 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <div class="mx-auto grid max-w-7xl gap-5 lg:grid-cols-3">
+      {membershipTiers.map((tier) => <MembershipTierCard tier={tier} />)}
+    </div>
+  </section>
+
+  <CTASection
+    title="Elige una afiliacion alineada al momento de tu empresa."
+    description="Desde empresas emergentes hasta aliados estrategicos, CITEC ofrece una ruta para integrarse al ecosistema con claridad."
+  />
+</BaseLayout>

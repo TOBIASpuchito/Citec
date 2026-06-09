@@ -1,0 +1,13 @@
+---
+interface Props {
+  as?: keyof HTMLElementTagNameMap;
+  class?: string;
+}
+
+const { as = "article", class: className } = Astro.props as Props;
+const Tag = as;
+---
+
+<Tag class:list={["glass-surface rounded-lg p-5", className]}>
+  <slot />
+</Tag>

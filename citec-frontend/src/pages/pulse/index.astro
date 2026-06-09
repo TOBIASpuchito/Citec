@@ -1,0 +1,41 @@
+---
+import CTASection from "@/components/sections/CTASection.astro";
+import PulseCard from "@/components/sections/PulseCard.astro";
+import { pulsePosts } from "@/data/pulse";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { absoluteUrl, breadcrumbJsonLd, itemListJsonLd } from "@/utils/seo";
+---
+
+<BaseLayout
+  title="Pulse editorial"
+  description="Pulse ordena senales complejas del ecosistema para convertirlas en lectura ejecutiva, criterio institucional y accion."
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: "Inicio", url: absoluteUrl("/") },
+      { name: "Pulse", url: absoluteUrl("/pulse/") },
+    ]),
+    itemListJsonLd(
+      "Pulse editorial CITEC",
+      pulsePosts.map((post) => ({
+        name: post.title,
+        url: absoluteUrl(`/pulse/${post.slug}/`),
+        description: post.summary,
+      })),
+    ),
+  ]}
+>
+  <section class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <div class="mx-auto grid max-w-7xl gap-5 lg:grid-cols-3">
+      {pulsePosts.map((post) => <PulseCard post={post} />)}
+    </div>
+  </section>
+
+  <CTASection
+    eyebrow="Acceso completo"
+    title="Quieres acceder al analisis completo? Afiliate a CITEC."
+    description="La afiliacion abre la puerta a contenidos ejecutivos, espacios de relacionamiento y conversaciones de alto valor para el ecosistema."
+    primaryLabel="Afiliarme"
+    secondaryHref="/beneficios/"
+    secondaryLabel="Ver beneficios"
+  />
+</BaseLayout>

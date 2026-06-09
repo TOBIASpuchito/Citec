@@ -1,0 +1,57 @@
+---
+import CTASection from "@/components/sections/CTASection.astro";
+import SectionHeader from "@/components/ui/SectionHeader.astro";
+import StatCard from "@/components/ui/StatCard.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { absoluteUrl, breadcrumbJsonLd } from "@/utils/seo";
+---
+
+<BaseLayout
+  title="Camara de Innovacion y Tecnologia Ecuatoriana"
+  description="CITEC actua como punto de encuentro entre empresas, talento, instituciones, regulacion e innovacion para impulsar un ecosistema digital mas competitivo."
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: "Inicio", url: absoluteUrl("/") },
+      { name: "CITEC", url: absoluteUrl("/la-citec/") },
+    ]),
+  ]}
+>
+  <section class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1fr] lg:items-start">
+      <SectionHeader
+        eyebrow="Proposito"
+        title="Confianza, visibilidad y criterio para un ecosistema que se mueve rapido."
+        description="La camara debe ayudar a que las empresas tecnologicas ecuatorianas sean mas visibles, mas conectadas y mas influyentes en decisiones publicas y privadas."
+      />
+      <div class="grid gap-5 sm:grid-cols-2">
+        <StatCard value="01" label="Articulacion" detail="Mesas y encuentros para conectar actores que normalmente operan en silos." />
+        <StatCard value="02" label="Autoridad" detail="Contenido editorial que traduce senales regulatorias y de mercado." />
+        <StatCard value="03" label="Visibilidad" detail="Directorio y perfiles pensados para descubrimiento local y sectorial." />
+        <StatCard value="04" label="Conversion" detail="Funnel de afiliacion con beneficios claros, formulario y prueba social." />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white/68 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <div class="mx-auto grid max-w-7xl gap-5 md:grid-cols-3">
+      {
+        [
+          ["Editorial", "Una voz institucional sobria para explicar temas complejos con claridad."],
+          ["Interactiva", "Experiencias filtrables y componentes con estado solo donde aportan valor."],
+          ["Escalable", "Una estructura preparada para nuevas iniciativas, socios, contenidos y eventos."],
+        ].map(([title, description]) => (
+          <article class="rounded-lg border border-citec-line/80 bg-white/84 p-6 shadow-[0_16px_38px_rgba(13,39,66,0.07)]" data-reveal>
+            <h2 class="font-display text-2xl font-black text-citec-ink">{title}</h2>
+            <p class="mt-4 text-sm leading-7 text-citec-ink-soft">{description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <CTASection
+    eyebrow="Agenda compartida"
+    title="Conecta tu empresa con una camara disenada para crear valor real."
+    description="CITEC abre espacios para visibilidad, relacionamiento, analisis y oportunidades de colaboracion dentro del ecosistema tecnologico."
+  />
+</BaseLayout>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="CITEC">
+  <rect width="64" height="64" rx="12" fill="#071526"/>
+  <path d="M16 18h32v7H25v14h23v7H16V18Z" fill="#64c8df"/>
+  <path d="M31 28h17v7H31v-7Z" fill="#f7fbfd"/>
+</svg>

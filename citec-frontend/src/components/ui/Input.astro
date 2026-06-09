@@ -1,0 +1,22 @@
+---
+interface Props {
+  label: string;
+  name: string;
+  type?: "text" | "email" | "tel" | "url" | "search" | "number" | "password";
+  placeholder?: string;
+  required?: boolean;
+}
+
+const { label, name, type = "text", placeholder, required = false } = Astro.props as Props;
+---
+
+<label class="grid gap-2 text-sm font-bold text-citec-ink">
+  <span>{label}</span>
+  <input
+    class="h-12 rounded-md border border-citec-line bg-white/82 px-3 text-sm text-citec-ink outline-none transition duration-300 ease-premium placeholder:text-citec-ink-soft/55 focus:border-citec-blue focus:ring-4 focus:ring-citec-cyan/20"
+    type={type}
+    name={name}
+    placeholder={placeholder}
+    required={required}
+  />
+</label>

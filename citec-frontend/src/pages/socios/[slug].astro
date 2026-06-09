@@ -1,0 +1,74 @@
+---
+import Badge from "@/components/ui/Badge.astro";
+import Button from "@/components/ui/Button.astro";
+import SectionHeader from "@/components/ui/SectionHeader.astro";
+import { partners, type Partner } from "@/data/partners";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { absoluteUrl, breadcrumbJsonLd, partnerOrganizationJsonLd } from "@/utils/seo";
+
+export function getStaticPaths() {
+  return partners.map((partner) => ({
+    params: { slug: partner.slug },
+    props: { partner },
+  }));
+}
+
+interface Props {
+  partner: Partner;
+}
+
+const { partner } = Astro.props;
+const partnerUrl = absoluteUrl(`/socios/${partner.slug}/`);
+---
+
+<BaseLayout
+  title={`${partner.name} - Socio CITEC`}
+  description={partner.description}
+  canonical={partnerUrl}
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: "Inicio", url: absoluteUrl("/") },
+      { name: "Socios", url: absoluteUrl("/socios/") },
+      { name: partner.name, url: partnerUrl },
+    ]),
+    partnerOrganizationJsonLd(partner, partnerUrl),
+  ]}
+>
+  <section class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_0.65fr]">
+      <article class="rounded-lg border border-citec-line/80 bg-white/84 p-6 shadow-glass" data-reveal>
+        <div class="flex flex-wrap items-center gap-3">
+          <div class="grid h-16 w-16 place-items-center rounded-md bg-citec-ink font-display text-xl font-black text-white shadow-soft">
+            {partner.logo}
+          </div>
+          <div>
+            <p class="text-sm font-bold text-citec-ink-soft">{partner.city} · {partner.industry}</p>
+            <div class="mt-2 flex flex-wrap gap-2">
+              <Badge tone="cyan">{partner.category}</Badge>
+              <Badge>{partner.clickCount} consultas</Badge>
+            </div>
+          </div>
+        </div>
+        <p class="mt-8 text-lg leading-9 text-citec-ink-soft">{partner.description}</p>
+        <div class="mt-8">
+          <Button href={partner.website} target="_blank" rel="noopener noreferrer">Visitar sitio web</Button>
+        </div>
+      </article>
+
+      <aside class="rounded-lg border border-citec-line/80 bg-citec-mist/72 p-6" data-reveal data-reveal-delay="0.08">
+        <SectionHeader
+          eyebrow="Beneficios"
+          title="Valor disponible para socios"
+          description="Cada perfil presenta capacidades, beneficios y senales de valor para facilitar nuevas conexiones."
+        />
+        <div class="mt-6 grid gap-3">
+          {partner.benefits.map((benefit) => (
+            <div class="rounded-md border border-citec-line bg-white/78 p-4 text-sm font-bold text-citec-ink">
+              {benefit}
+            </div>
+          ))}
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

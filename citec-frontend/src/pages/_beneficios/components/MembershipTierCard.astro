@@ -1,0 +1,18 @@
+---
+import Badge from "@/components/ui/Badge.astro";
+import type { membershipTiers } from "@/data/benefits";
+
+type MembershipTier = (typeof membershipTiers)[number];
+
+interface Props {
+  tier: MembershipTier;
+}
+
+const { tier } = Astro.props;
+---
+
+<article class="rounded-lg border border-citec-line/80 bg-white/86 p-6 shadow-[0_16px_38px_rgba(13,39,66,0.07)]" data-reveal>
+  <Badge tone="cyan">{tier.name}</Badge>
+  <h2 class="mt-6 font-display text-2xl font-black text-citec-ink">{tier.value}</h2>
+  <p class="mt-4 text-sm leading-7 text-citec-ink-soft">{tier.description}</p>
+</article>
