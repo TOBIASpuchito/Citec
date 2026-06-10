@@ -1,22 +1,67 @@
 :root {
   color-scheme: light;
+  --citec-font-sans: Inter, Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --citec-font-display: Geist, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --citec-ink: #071526;
+  --citec-ink-rgb: 7 21 38;
   --citec-ink-soft: #284156;
+  --citec-ink-soft-rgb: 40 65 86;
   --citec-navy: #0d2742;
+  --citec-navy-rgb: 13 39 66;
   --citec-blue: #164b77;
+  --citec-blue-rgb: 22 75 119;
   --citec-cyan: #62c7d9;
+  --citec-cyan-rgb: 98 199 217;
   --citec-violet: #7770c9;
+  --citec-violet-rgb: 119 112 201;
   --citec-paper: #f7fbfd;
+  --citec-paper-rgb: 247 251 253;
   --citec-surface: #ffffff;
+  --citec-surface-rgb: 255 255 255;
   --citec-mist: #eef5f8;
+  --citec-mist-rgb: 238 245 248;
   --citec-line: #d8e4eb;
+  --citec-line-rgb: 216 228 235;
   --citec-warm: #f5f1e8;
+  --citec-warm-rgb: 245 241 232;
   --citec-success: #2f8f77;
+  --citec-success-rgb: 47 143 119;
+
+  /* Semantic UI aliases. Change these first when the brand palette is finalized. */
+  --color-primary-text: var(--citec-ink);
+  --color-primary-text-rgb: var(--citec-ink-rgb);
+  --color-secondary-text: var(--citec-ink-soft);
+  --color-secondary-text-rgb: var(--citec-ink-soft-rgb);
+  --color-muted-text: var(--citec-ink-soft);
+  --color-muted-text-rgb: var(--citec-ink-soft-rgb);
+  --color-accent-text: var(--citec-blue);
+  --color-accent-text-rgb: var(--citec-blue-rgb);
+  --color-page-bg: var(--citec-paper);
+  --color-page-bg-rgb: var(--citec-paper-rgb);
+  --color-surface: var(--citec-surface);
+  --color-surface-rgb: var(--citec-surface-rgb);
+  --color-surface-muted: var(--citec-mist);
+  --color-surface-muted-rgb: var(--citec-mist-rgb);
+  --color-border-subtle: var(--citec-line);
+  --color-border-subtle-rgb: var(--citec-line-rgb);
+  --color-action-bg: var(--citec-ink);
+  --color-action-bg-rgb: var(--citec-ink-rgb);
+  --color-action-bg-hover: var(--citec-navy);
+  --color-action-bg-hover-rgb: var(--citec-navy-rgb);
+  --color-action-text: var(--citec-surface);
+  --color-action-text-rgb: var(--citec-surface-rgb);
+  --color-focus: var(--citec-blue);
+  --color-focus-rgb: var(--citec-blue-rgb);
+
   --citec-radius: 8px;
   --citec-radius-lg: 18px;
+  --citec-control-lg: 3.1rem;
   --citec-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --citec-shadow-soft: 0 24px 70px rgba(13, 39, 66, 0.1);
   --citec-shadow-glass: 0 18px 48px rgba(13, 39, 66, 0.12);
+  --citec-hero-surface: radial-gradient(circle at 78% 24%, rgb(var(--citec-cyan-rgb) / 0.22), transparent 28rem),
+    radial-gradient(circle at 95% 62%, rgb(var(--citec-violet-rgb) / 0.16), transparent 24rem),
+    linear-gradient(120deg, var(--color-surface) 0%, #f5fbff 45%, #edf7fc 100%);
 }
 
 @media (prefers-color-scheme: dark) {

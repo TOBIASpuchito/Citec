@@ -1,22 +1,38 @@
 ---
 import { mainNavigation } from "@/data/navigation";
+
+const isHome = Astro.url.pathname === "/";
 ---
 
-<header class="sticky top-0 z-50 border-b border-white/70 bg-white/78 backdrop-blur-xl">
+<header
+  class:list={[
+    "top-0 z-50",
+    isHome
+      ? "absolute inset-x-0 border-b border-border-subtle/50 bg-surface/72 text-primary-text backdrop-blur-xl"
+      : "sticky border-b border-surface/70 bg-surface/78 text-primary-text backdrop-blur-xl",
+  ]}
+>
   <a
     href="#main-content"
-    class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-citec-ink focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+    class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-action-bg focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-action-text"
   >
     Saltar al contenido
   </a>
   <div class="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
     <a href="/" class="group flex items-center gap-3" aria-label="CITEC inicio">
-      <span class="grid h-10 w-10 place-items-center rounded-md bg-citec-ink text-sm font-black text-white shadow-soft transition duration-300 ease-premium group-hover:-translate-y-0.5">
+      <span
+        class:list={[
+          "grid h-10 w-10 place-items-center rounded-md text-sm font-black shadow-soft transition duration-300 ease-premium group-hover:-translate-y-0.5",
+          "bg-action-bg text-action-text",
+        ]}
+      >
         CT
       </span>
       <span class="leading-none">
-        <span class="block font-display text-base font-black tracking-normal text-citec-ink">CITEC</span>
-        <span class="mt-1 hidden text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-citec-ink-soft sm:block">Innovacion Ecuador</span>
+        <span class="block font-display text-base font-black tracking-normal text-primary-text">CITEC</span>
+        <span class="mt-1 hidden text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-secondary-text sm:block">
+          Innovacion Ecuador
+        </span>
       </span>
     </a>
 
@@ -25,7 +41,10 @@ import { mainNavigation } from "@/data/navigation";
         mainNavigation.map((item) => (
           <a
             href={item.href}
-            class="rounded-md px-3 py-2 text-sm font-semibold text-citec-ink-soft transition duration-300 ease-premium hover:bg-citec-mist hover:text-citec-ink"
+            class:list={[
+              "rounded-md px-3 py-2 text-sm font-semibold transition duration-300 ease-premium",
+              "text-secondary-text hover:bg-surface-muted hover:text-primary-text",
+            ]}
           >
             {item.label}
           </a>
@@ -36,25 +55,34 @@ import { mainNavigation } from "@/data/navigation";
     <div class="hidden items-center gap-2 md:flex">
       <a
         href="/unete/"
-        class="rounded-md bg-citec-ink px-4 py-2 text-sm font-bold text-white shadow-soft transition duration-300 ease-premium hover:-translate-y-0.5 hover:bg-citec-navy"
+        class:list={[
+          "rounded-md px-4 py-2 text-sm font-bold shadow-soft transition duration-300 ease-premium hover:-translate-y-0.5",
+          "bg-action-bg text-action-text hover:bg-action-bg-hover",
+        ]}
       >
-        Unete
+        {isHome ? "Afiliate" : "Unete"}
       </a>
     </div>
 
     <details class="group relative md:hidden">
-      <summary class="grid h-10 w-10 cursor-pointer list-none place-items-center rounded-md border border-citec-line bg-white text-citec-ink transition duration-300 ease-premium hover:bg-citec-mist" aria-label="Abrir menu">
+      <summary
+        class:list={[
+          "grid h-10 w-10 cursor-pointer list-none place-items-center rounded-md border transition duration-300 ease-premium",
+          "border-border-subtle bg-surface text-primary-text hover:bg-surface-muted",
+        ]}
+        aria-label="Abrir menu"
+      >
         <span class="h-0.5 w-5 rounded-full bg-current shadow-[0_6px_0_current,0_-6px_0_current]"></span>
       </summary>
       <div class="glass-surface absolute right-0 mt-3 w-[min(18rem,calc(100vw-2rem))] rounded-lg p-2">
         {
           mainNavigation.map((item) => (
-            <a href={item.href} class="block rounded-md px-3 py-3 text-sm font-semibold text-citec-ink-soft hover:bg-white">
+            <a href={item.href} class="block rounded-md px-3 py-3 text-sm font-semibold text-secondary-text hover:bg-surface">
               {item.label}
             </a>
           ))
         }
-        <a href="/unete/" class="mt-1 block rounded-md bg-citec-ink px-3 py-3 text-sm font-bold text-white">
+        <a href="/unete/" class="mt-1 block rounded-md bg-action-bg px-3 py-3 text-sm font-bold text-action-text">
           Unete a CITEC
         </a>
       </div>

@@ -12,12 +12,12 @@ const { eyebrow, title, description, align = "left", class: className } = Astro.
 
 <div class:list={[align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl", className]} data-reveal>
   {eyebrow && <p class:list={["editorial-label", align === "center" && "justify-center"]}>{eyebrow}</p>}
-  <h2 class="mt-4 font-display text-3xl font-black leading-tight tracking-normal text-citec-ink sm:text-4xl lg:text-5xl">
+  <h2 class="mt-4 font-display text-3xl font-black leading-tight tracking-normal text-primary-text sm:text-4xl lg:text-5xl">
     {title}
   </h2>
   {
     description && (
-      <p class="mt-4 text-base leading-8 text-citec-ink-soft sm:text-lg">
+      <p class="mt-4 text-base leading-8 text-secondary-text sm:text-lg">
         {description}
       </p>
     )

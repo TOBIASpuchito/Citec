@@ -1,0 +1,7 @@
+interface:
+  display_name: "Sistema Tailwind CITEC"
+  short_description: "Tokens, capas y componentes Tailwind mantenibles"
+  default_prompt: "Use $citec-tailwind-system to refactor or create CITEC frontend styles with Tailwind tokens, global CSS variables, and reusable component layers."
+
+policy:
+  allow_implicit_invocation: true

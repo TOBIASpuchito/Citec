@@ -1,0 +1,267 @@
+.hero-crystals-island {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-crystals-field {
+  position: absolute;
+  top: 50%;
+  right: max(-6rem, -7vw);
+  width: min(62vw, 62rem);
+  height: min(68vh, 46rem);
+  min-height: 34rem;
+  transform: translateY(-46%);
+  isolation: isolate;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.hero-crystals-field::before {
+  position: absolute;
+  inset: 12% 4% 10% 20%;
+  content: "";
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 45% 42%, rgba(84, 196, 217, 0.2), transparent 38%),
+    radial-gradient(circle at 70% 56%, rgba(126, 118, 255, 0.22), transparent 36%),
+    radial-gradient(circle at 34% 76%, rgba(255, 255, 255, 0.12), transparent 40%);
+  filter: blur(54px);
+  opacity: 1;
+}
+
+.hero-crystals-orbit {
+  position: absolute;
+  border: 1px solid rgba(213, 230, 242, 0.08);
+  border-radius: 999px;
+  transform: rotate(-12deg);
+}
+
+.hero-crystals-orbit--one {
+  inset: 8% 7% 20% 17%;
+}
+
+.hero-crystals-orbit--two {
+  inset: 18% 16% 28% 26%;
+  opacity: 0.72;
+}
+
+.hero-crystal-piece {
+  position: absolute;
+  z-index: var(--piece-z, 2);
+  width: var(--piece-width);
+  height: var(--piece-height);
+  aspect-ratio: var(--piece-ratio, 1.35 / 1);
+  transform:
+    translate3d(0, 0, var(--piece-depth, 0))
+    rotate(var(--piece-rotate, 0deg));
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+.hero-crystal-piece__float,
+.hero-crystal-piece__glass,
+.hero-crystal-piece__highlight,
+.hero-crystal-piece__rim {
+  position: absolute;
+  inset: 0;
+  display: block;
+  clip-path: var(--crystal-clip);
+  transform-style: preserve-3d;
+}
+
+.hero-crystal-piece__float {
+  will-change: transform;
+}
+
+.hero-crystal-piece__glass {
+  border: 1px solid rgba(225, 240, 250, 0.28);
+  background:
+    linear-gradient(130deg, rgba(255, 255, 255, 0.44), rgba(255, 255, 255, 0.12) 28%, rgba(114, 132, 211, 0.2) 63%, rgba(14, 29, 53, 0.42)),
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.48), transparent 9rem),
+    radial-gradient(circle at 76% 78%, rgba(80, 192, 216, 0.28), transparent 10rem),
+    rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.55),
+    inset -18px -18px 38px rgba(18, 40, 74, 0.18),
+    inset 18px 18px 34px rgba(255, 255, 255, 0.05),
+    0 28px 68px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(142, 205, 241, 0.12);
+  backdrop-filter: blur(18px) saturate(145%);
+}
+
+.hero-crystal-piece__highlight {
+  background:
+    linear-gradient(116deg, rgba(255, 255, 255, 0.74) 0 1px, transparent 16%),
+    linear-gradient(124deg, transparent 18%, rgba(255, 255, 255, 0.16) 34%, transparent 55%),
+    radial-gradient(circle at 82% 10%, rgba(211, 238, 255, 0.42), transparent 7rem);
+  mix-blend-mode: screen;
+  opacity: 0.62;
+  transform: translateZ(0.6rem);
+}
+
+.hero-crystal-piece__rim {
+  box-shadow:
+    inset 0.22rem 0.2rem 0.4rem rgba(255, 255, 255, 0.28),
+    inset -0.35rem -0.32rem 0.72rem rgba(106, 152, 219, 0.28);
+  transform: translateZ(1rem);
+}
+
+.hero-crystal-piece--core {
+  --piece-width: min(39vw, 36rem);
+  --piece-height: min(27.5vw, 25.4rem);
+  --piece-ratio: 1.42 / 1;
+  --piece-depth: 8rem;
+  --piece-rotate: -10deg;
+  --piece-z: 7;
+  top: 12%;
+  right: 12%;
+}
+
+.hero-crystal-piece--core .hero-crystal-piece__glass {
+  background:
+    linear-gradient(128deg, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0.08) 30%, rgba(103, 120, 208, 0.18) 66%, rgba(10, 24, 45, 0.38)),
+    radial-gradient(circle at 22% 16%, rgba(255, 255, 255, 0.42), transparent 9rem),
+    radial-gradient(circle at 68% 84%, rgba(104, 214, 232, 0.18), transparent 13rem),
+    rgba(255, 255, 255, 0.045);
+}
+
+.hero-crystal-piece--core::after {
+  position: absolute;
+  inset: 25% 28% 24% 36%;
+  content: "";
+  clip-path: polygon(46% 0, 58% 10%, 65% 26%, 82% 28%, 90% 42%, 78% 54%, 72% 72%, 58% 90%, 47% 100%, 38% 82%, 22% 76%, 18% 58%, 0 50%, 14% 38%, 22% 18%);
+  background-image: radial-gradient(circle, rgba(222, 239, 255, 0.42) 0 1.6px, transparent 1.8px);
+  background-size: 9px 9px;
+  opacity: 0.46;
+  transform: translateZ(1.8rem);
+}
+
+.hero-crystal-piece--left {
+  --piece-width: min(17vw, 14rem);
+  --piece-height: min(14.2vw, 11.7rem);
+  --piece-ratio: 1.2 / 1;
+  --piece-depth: 4rem;
+  --piece-rotate: -18deg;
+  --piece-z: 5;
+  top: 36%;
+  left: 15%;
+}
+
+.hero-crystal-piece--top {
+  --piece-width: min(14vw, 12rem);
+  --piece-height: min(9.1vw, 7.8rem);
+  --piece-ratio: 1.55 / 1;
+  --piece-depth: -4rem;
+  --piece-rotate: 16deg;
+  --piece-z: 2;
+  top: 5%;
+  left: 46%;
+  opacity: 0.72;
+  filter: blur(0.45px);
+}
+
+.hero-crystal-piece--right {
+  --piece-width: min(18vw, 15rem);
+  --piece-height: min(10.5vw, 8.8rem);
+  --piece-ratio: 1.72 / 1;
+  --piece-depth: 1rem;
+  --piece-rotate: -9deg;
+  --piece-z: 4;
+  top: 23%;
+  right: 0;
+  opacity: 0.8;
+  filter: blur(0.2px);
+}
+
+.hero-crystal-piece--lower {
+  --piece-width: min(26vw, 23rem);
+  --piece-height: min(16.8vw, 14.85rem);
+  --piece-ratio: 1.55 / 1;
+  --piece-depth: 3rem;
+  --piece-rotate: -12deg;
+  --piece-z: 4;
+  right: 9%;
+  bottom: 7%;
+}
+
+.hero-crystal-piece--rear {
+  --piece-width: min(19vw, 16rem);
+  --piece-height: min(14vw, 11.8rem);
+  --piece-ratio: 1.36 / 1;
+  --piece-depth: -7rem;
+  --piece-rotate: -6deg;
+  --piece-z: 1;
+  left: 20%;
+  bottom: 16%;
+  opacity: 0.5;
+  filter: blur(1px);
+}
+
+@media (max-width: 1180px) {
+  .hero-crystals-field {
+    right: -11rem;
+    width: min(74vw, 55rem);
+    opacity: 0.92;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero-crystals-field {
+    top: auto;
+    right: -14rem;
+    bottom: -4rem;
+    width: min(92vw, 42rem);
+    height: 31rem;
+    min-height: 0;
+    transform: none;
+    opacity: 0.52;
+  }
+
+  .hero-crystal-piece--left,
+  .hero-crystal-piece--top,
+  .hero-crystal-piece--rear {
+    display: none;
+  }
+
+  .hero-crystal-piece--core {
+    --piece-width: min(72vw, 30rem);
+    top: 8%;
+    right: 9%;
+  }
+
+  .hero-crystal-piece--right {
+    --piece-width: min(32vw, 13rem);
+    top: 18%;
+    right: 0;
+  }
+
+  .hero-crystal-piece--lower {
+    --piece-width: min(48vw, 20rem);
+    right: 8%;
+    bottom: 12%;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-crystals-field {
+    right: -12rem;
+    bottom: -2rem;
+    width: 36rem;
+    height: 25rem;
+    opacity: 0.38;
+  }
+
+  .hero-crystal-piece--right {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-crystal-piece,
+  .hero-crystal-piece__float {
+    will-change: auto;
+  }
+}

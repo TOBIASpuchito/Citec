@@ -12,8 +12,9 @@ Use this skill before and after changing visible UI.
 1. Read the local context first: page purpose, existing components, Tailwind tokens, assets, copy tone, route role, and nearby UI patterns.
 2. State the screen's job in one sentence before designing. If a section has no clear job, remove it or make it sharper.
 3. Prefer existing tokens and components. Add new visual language only when the current system cannot express the intent.
-4. Design with real information density. Use specific content, real page states, real data structures, and credible empty/loading/error states where relevant.
-5. Verify desktop and mobile. Check text wrapping, spacing rhythm, hit targets, contrast, motion, and whether the first viewport communicates the actual product or institution.
+4. Keep route files clean. Move repeated visual decisions to shared components, `src/styles/tokens.css`, `tailwind.config.mjs`, or `@layer components` in `src/styles/global.css`.
+5. Design with real information density. Use specific content, real page states, real data structures, and credible empty/loading/error states where relevant.
+6. Verify desktop and mobile. Check text wrapping, spacing rhythm, hit targets, contrast, motion, and whether the first viewport communicates the actual product or institution.
 
 ## Anti-AI Checks
 
@@ -23,6 +24,7 @@ Use this skill before and after changing visible UI.
 - Avoid one-note palettes. CITEC can use navy, paper, mist, cyan, violet, warm, and white, but accents should be intentional.
 - Avoid oversized display type inside cards, tool panels, or compact content. Reserve hero scale for true heroes.
 - Avoid nested cards and decorative wrappers around every section. Use cards for repeated items, modals, and framed tools only.
+- Avoid page-local style blocks that recreate buttons, grids, stats, shadows, or typography already available in the design system.
 
 ## CITEC Direction
 
@@ -39,6 +41,7 @@ Use this skill before and after changing visible UI.
 - Keep shared layout, motion, and reusable content cards in `src/components`.
 - Promote a page component to shared only after at least two routes need the same behavior without page-specific copy branches.
 - Pass small typed props. Do not pass whole datasets unless the component owns filtering or rendering of that dataset.
+- When repeated classes or CSS appear, use the `citec-tailwind-system` skill and refactor toward tokens/components before continuing visual polish.
 
 ## Visual QA
 
