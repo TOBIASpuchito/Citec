@@ -240,11 +240,10 @@ export default function ParticlesToMap() {
 
   return (
     <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden" aria-hidden="true">
-      <div className="absolute right-[-10rem] top-1/2 h-[50rem] w-[64rem] -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(98,199,217,0.2),rgba(119,112,201,0.12)_42%,transparent_70%)] blur-3xl max-lg:right-[-20rem] max-lg:opacity-55" />
-      <div className="absolute right-[6rem] top-[72%] h-8 w-[26rem] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.28),rgba(56,189,248,0.16)_42%,transparent_72%)] blur-xl max-lg:right-[-3rem] max-lg:w-[20rem] max-lg:opacity-45 max-sm:right-[-2rem] max-sm:top-[82%] max-sm:h-6 max-sm:w-[16rem] max-sm:opacity-40" />
+      <div className="bg-black/45 absolute right-[17rem] top-[90%] h-3 w-1/5 rounded-full  blur-xl  max-lg:top-[82%] max-lg:w-72 max-lg:opacity-70   max-sm:top-[27.25rem] opacity-0 lg:opacity-80 " />
       <canvas
         ref={canvasRef}
-        className="absolute right-[-7rem] top-1/2 h-auto w-[min(66vw,62rem)] -translate-y-1/2 opacity-95 max-lg:right-[-17rem] max-lg:w-[48rem] max-lg:opacity-35 max-sm:right-[-13rem] max-sm:top-[76%] max-sm:w-[34rem] max-sm:opacity-38"
+        className=" absolute lg:right-[-7rem] right-0 top-1/2 h-auto w-[min(66vw,62rem)] -translate-y-1/2 opacity-95 max-lg:right-[-17rem] max-lg:w-[48rem] max-lg:opacity-35 max-sm:left-1/2 max-sm:right-auto max-sm:top-52 max-sm:w-[32rem] max-sm:-translate-x-1/2 max-sm:scale-125 max-sm:opacity-90"
         width={WIDTH}
         height={HEIGHT}
       />

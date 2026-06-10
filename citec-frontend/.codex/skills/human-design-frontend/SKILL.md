@@ -12,9 +12,10 @@ Use this skill before and after changing visible UI.
 1. Read the local context first: page purpose, existing components, Tailwind tokens, assets, copy tone, route role, and nearby UI patterns.
 2. State the screen's job in one sentence before designing. If a section has no clear job, remove it or make it sharper.
 3. Prefer existing tokens and components. Add new visual language only when the current system cannot express the intent.
-4. Keep route files clean. Move repeated visual decisions to shared components, `src/styles/tokens.css`, `tailwind.config.mjs`, or `@layer components` in `src/styles/global.css`.
-5. Design with real information density. Use specific content, real page states, real data structures, and credible empty/loading/error states where relevant.
-6. Verify desktop and mobile. Check text wrapping, spacing rhythm, hit targets, contrast, motion, and whether the first viewport communicates the actual product or institution.
+4. For simple size, spacing, layout, responsive, or alignment tweaks, use existing Tailwind classes in the affected component; do not edit global CSS, token variables, or Tailwind config.
+5. Keep route files clean. Move repeated visual decisions to shared components, `src/styles/tokens.css`, `tailwind.config.mjs`, or `@layer components` in `src/styles/global.css` only when the pattern is genuinely shared.
+6. Design with real information density. Use specific content, real page states, real data structures, and credible empty/loading/error states where relevant.
+7. Verify desktop and mobile. Check text wrapping, spacing rhythm, hit targets, contrast, motion, and whether the first viewport communicates the actual product or institution.
 
 ## Anti-AI Checks
 

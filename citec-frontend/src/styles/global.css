@@ -312,6 +312,12 @@
     margin-top: 1.75rem;
   }
 
+  .home-hero__button-icon {
+    width: 1.05rem;
+    height: 1.05rem;
+    flex: 0 0 auto;
+  }
+
   .home-hero__stats {
     display: grid;
     width: min(100%, 32rem);
@@ -437,7 +443,7 @@
   .home-hero__content {
     min-height: 100svh;
     align-items: start;
-    padding: 7.25rem 1.25rem 19rem;
+    padding: 22.5rem 1.25rem 4rem;
   }
 
   .home-hero__copy {
@@ -452,7 +458,9 @@
   }
 
   .home-hero__actions {
-    width: min(100%, 19rem);
+    width: min(100%, 21.5rem);
+    flex-direction: row;
+    gap: 0.55rem;
     margin-top: 1.35rem;
   }
 
@@ -461,7 +469,18 @@
   }
 
   .home-hero .citec-button {
-    width: 100%;
+    min-height: 2.85rem;
+    flex: 1 1 0;
+    gap: 0.45rem;
+    padding-inline: 0.7rem;
+    font-size: 0.78rem;
+    font-weight: 780;
+    white-space: nowrap;
+  }
+
+  .home-hero__button-icon {
+    width: 0.9rem;
+    height: 0.9rem;
   }
 
   .home-hero__stats {
