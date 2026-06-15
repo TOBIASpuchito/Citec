@@ -1,0 +1,7 @@
+interface:
+  display_name: "SEO CITEC"
+  short_description: "Metadata, JSON-LD, sitemap, RSS y manifest"
+  default_prompt: "Use $citec-seo-routing to implement or review CITEC SEO metadata, JSON-LD, sitemap, robots, RSS, manifest, and route-level SEO helpers."
+
+policy:
+  allow_implicit_invocation: true

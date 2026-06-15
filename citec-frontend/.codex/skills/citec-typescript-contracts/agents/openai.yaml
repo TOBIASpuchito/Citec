@@ -1,0 +1,7 @@
+interface:
+  display_name: "TypeScript CITEC"
+  short_description: "Contratos estrictos para datos, props e integraciones"
+  default_prompt: "Use $citec-typescript-contracts to create or review strict TypeScript types, data contracts, Astro props, React props, and integration boundaries in the CITEC frontend."
+
+policy:
+  allow_implicit_invocation: true

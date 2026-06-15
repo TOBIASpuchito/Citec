@@ -1,0 +1,7 @@
+interface:
+  display_name: "Astro CITEC"
+  short_description: "Rutas, layouts y componentes Astro del proyecto"
+  default_prompt: "Use $citec-astro-routing to create or review CITEC Astro routes, layouts, page-owned components, and static-friendly page structure."
+
+policy:
+  allow_implicit_invocation: true

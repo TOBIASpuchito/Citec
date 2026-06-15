@@ -1,0 +1,7 @@
+interface:
+  display_name: "Motion CITEC"
+  short_description: "GSAP, ScrollTrigger y Lenis con rendimiento y accesibilidad"
+  default_prompt: "Use $citec-motion-system to implement or review CITEC motion with GSAP, ScrollTrigger, Lenis, reveal attributes, and reduced-motion support."
+
+policy:
+  allow_implicit_invocation: true

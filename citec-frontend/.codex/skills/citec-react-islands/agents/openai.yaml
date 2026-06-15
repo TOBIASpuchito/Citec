@@ -1,0 +1,7 @@
+interface:
+  display_name: "React Islands CITEC"
+  short_description: "Islas React tipadas, accesibles y con hidratacion controlada"
+  default_prompt: "Use $citec-react-islands to build or review hydrated React islands, browser-only behavior, hooks, and lucide-react controls in the CITEC frontend."
+
+policy:
+  allow_implicit_invocation: true

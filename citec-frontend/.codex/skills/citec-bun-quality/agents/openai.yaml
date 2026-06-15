@@ -1,0 +1,7 @@
+interface:
+  display_name: "Bun QA CITEC"
+  short_description: "Comandos Bun, checks, builds y validacion final"
+  default_prompt: "Use $citec-bun-quality to choose and run the right Bun validation commands, dependency workflow, dev server flow, and final QA for the CITEC frontend."
+
+policy:
+  allow_implicit_invocation: true
