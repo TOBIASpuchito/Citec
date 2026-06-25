@@ -12,10 +12,10 @@
     "generate:og": "bun scripts/generate-og-image.mjs"
   },
   "dependencies": {
-    "@astrojs/react": "latest",
-    "@astrojs/sitemap": "latest",
-    "@astrojs/tailwind": "latest",
-    "astro": "latest",
+    "@astrojs/react": "^5.0.7",
+    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^7.0.0",
     "clsx": "latest",
     "gsap": "latest",
     "lenis": "latest",
