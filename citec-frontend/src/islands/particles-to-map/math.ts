@@ -6,11 +6,11 @@ export function clamp(value: number, min: number, max: number) {
 
 export function gradientColor(point: Point, sceneWidth: number) {
   const blend = clamp(point.x / sceneWidth, 0, 1);
-  const violet = { r: 141, g: 107, b: 214 };
-  const cyan = { r: 98, g: 199, b: 217 };
-  const red = Math.round(violet.r + (cyan.r - violet.r) * blend);
-  const green = Math.round(violet.g + (cyan.g - violet.g) * blend);
-  const blue = Math.round(violet.b + (cyan.b - violet.b) * blend);
+  const indigo = { r: 45, g: 54, b: 142 };
+  const sky = { r: 59, g: 167, b: 255 };
+  const red = Math.round(indigo.r + (sky.r - indigo.r) * blend);
+  const green = Math.round(indigo.g + (sky.g - indigo.g) * blend);
+  const blue = Math.round(indigo.b + (sky.b - indigo.b) * blend);
 
   return `rgba(${red}, ${green}, ${blue}, 0.82)`;
 }

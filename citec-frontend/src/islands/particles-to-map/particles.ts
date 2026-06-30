@@ -27,10 +27,17 @@ export function buildParticles(from: Point[], to: Point[], sceneWidth: number, i
   });
 }
 
-export function drawParticles(context: CanvasRenderingContext2D, particles: Particle[], progress: number) {
+export function drawParticles(
+  context: CanvasRenderingContext2D,
+  particles: Particle[],
+  progress: number,
+  visibility = 1,
+) {
   particles.forEach((particle, index) => {
     const localProgress = clamp((progress - particle.delay) / 0.82, 0, 1);
+    const localVisibility = clamp((visibility - particle.delay) / 0.82, 0, 1);
     const eased = easeInOut(localProgress);
+    const visible = easeInOut(localVisibility);
     const x = particle.from.x + (particle.to.x - particle.from.x) * eased;
     const y = particle.from.y + (particle.to.y - particle.from.y) * eased;
     const radius = particle.fromRadius + (particle.toRadius - particle.fromRadius) * eased;
@@ -38,7 +45,7 @@ export function drawParticles(context: CanvasRenderingContext2D, particles: Part
     const pulse = 0.98 + deterministicNoise(index * 0.41) * 0.04;
 
     context.beginPath();
-    context.globalAlpha = alpha;
+    context.globalAlpha = alpha * visible;
     context.fillStyle = particle.color;
     context.arc(x, y, radius * pulse, 0, Math.PI * 2);
     context.fill();

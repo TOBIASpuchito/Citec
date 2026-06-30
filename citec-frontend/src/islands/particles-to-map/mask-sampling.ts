@@ -1,6 +1,5 @@
-import { MASK_DARK_THRESHOLD } from "./constants";
 import { deterministicJitter, deterministicShuffle, normalizePoints } from "./math";
-import { getMaskContentBounds } from "./masks";
+import { getMaskContentBounds, isMaskPixel } from "./masks";
 import type { Bounds, MaskExtractionOptions, MaskSample, Placement, Point } from "./types";
 
 export function fitSourceToPlacement(sourceBounds: Bounds, placement: Placement): Bounds {
@@ -29,33 +28,36 @@ export function extractPointsFromMask(
   const context = canvas.getContext("2d", { willReadFrequently: true });
 
   if (!context) {
-    return { bounds: { height: 0, width: 0, x: 0, y: 0 }, points: [] };
+    const emptyBounds = { height: 0, width: 0, x: 0, y: 0 };
+
+    return { bounds: emptyBounds, imageBounds: emptyBounds, points: [] };
   }
 
   canvas.width = sceneWidth;
   canvas.height = sceneHeight;
 
   context.clearRect(0, 0, sceneWidth, sceneHeight);
-  context.fillStyle = "#ffffff";
-  context.fillRect(0, 0, sceneWidth, sceneHeight);
+  const pixelMode = options.pixelMode ?? "dark";
+
+  if (pixelMode === "dark") {
+    context.fillStyle = "#ffffff";
+    context.fillRect(0, 0, sceneWidth, sceneHeight);
+  }
 
   const sourceBounds =
     options.cropToContent === false
       ? { height: image.naturalHeight, width: image.naturalWidth, x: 0, y: 0 }
-      : getMaskContentBounds(image);
+      : getMaskContentBounds(image, pixelMode);
   const bounds = fitSourceToPlacement(sourceBounds, placement);
+  const sourceScale = bounds.width / sourceBounds.width;
+  const imageBounds = {
+    height: image.naturalHeight * sourceScale,
+    width: image.naturalWidth * sourceScale,
+    x: bounds.x - sourceBounds.x * sourceScale,
+    y: bounds.y - sourceBounds.y * sourceScale,
+  };
 
-  context.drawImage(
-    image,
-    sourceBounds.x,
-    sourceBounds.y,
-    sourceBounds.width,
-    sourceBounds.height,
-    bounds.x,
-    bounds.y,
-    bounds.width,
-    bounds.height,
-  );
+  context.drawImage(image, imageBounds.x, imageBounds.y, imageBounds.width, imageBounds.height);
 
   const data = context.getImageData(0, 0, sceneWidth, sceneHeight).data;
   const points: Point[] = [];
@@ -68,9 +70,7 @@ export function extractPointsFromMask(
       const green = data[pixelIndex + 1] ?? 255;
       const blue = data[pixelIndex + 2] ?? 255;
       const alpha = data[pixelIndex + 3] ?? 255;
-      const luminance = red * 0.2126 + green * 0.7152 + blue * 0.0722;
-
-      if (alpha > 12 && luminance <= MASK_DARK_THRESHOLD) {
+      if (isMaskPixel(red, green, blue, alpha, pixelMode)) {
         points.push({
           x: x + deterministicJitter(x, y, jitterAmount),
           y: y + deterministicJitter(y, x, jitterAmount),
@@ -79,5 +79,5 @@ export function extractPointsFromMask(
     }
   }
 
-  return { bounds, points: normalizePoints(deterministicShuffle(points), count) };
+  return { bounds, imageBounds, points: normalizePoints(deterministicShuffle(points), count) };
 }

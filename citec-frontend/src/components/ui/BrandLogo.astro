@@ -1,0 +1,28 @@
+---
+interface Props {
+  layout?: "horizontal" | "stacked";
+  tone?: "color" | "white";
+  class?: string;
+  priority?: boolean;
+}
+
+const {
+  layout = "horizontal",
+  tone = "color",
+  class: className,
+  priority = false,
+} = Astro.props;
+const dimensions = layout === "horizontal" ? { width: 998, height: 137 } : { width: 792, height: 774 };
+const src = `/brand/citec-logo-${layout}-${tone}.svg`;
+---
+
+<img
+  src={src}
+  alt="CITEC - Camara de Innovacion y Tecnologia Ecuatoriana"
+  width={dimensions.width}
+  height={dimensions.height}
+  class={className}
+  loading={priority ? "eager" : "lazy"}
+  decoding="async"
+  fetchpriority={priority ? "high" : "auto"}
+/>

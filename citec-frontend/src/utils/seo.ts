@@ -31,7 +31,7 @@ export function organizationJsonLd() {
     name: site.legalName,
     alternateName: site.name,
     url: site.url,
-    logo: absoluteUrl("/favicon.svg"),
+    logo: absoluteUrl("/brand/citec-logo-stacked-color.svg"),
     email: site.email,
     telephone: site.phone,
     address: {

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
-import { MEDIA_QUERIES, PARTICLE_COUNTS, SCENE_LIMITS, TIMING } from "./constants";
+import { MEDIA_QUERIES, PARTICLE_COUNTS, PARTICLE_SPACING, SCENE_LIMITS, TIMING } from "./constants";
 import { finalizeHeroIntro } from "./hero-intro";
 import { extractPointsFromMask } from "./mask-sampling";
 import { loadMasks } from "./masks";
@@ -38,9 +38,10 @@ export function useParticlesToMap({ canvasRef, sceneRef }: ParticlesToMapRefs) {
       const isMobile = window.matchMedia(MEDIA_QUERIES.mobile).matches;
       const sceneWidth = Math.max(Math.round(sceneElement.clientWidth), SCENE_LIMITS.minWidth);
       const sceneHeight = Math.max(Math.round(sceneElement.clientHeight), SCENE_LIMITS.minHeight);
-      const citecParticleCount = isMobile ? PARTICLE_COUNTS.mobile : PARTICLE_COUNTS.desktopCitec;
-      const mapParticleCount = isMobile ? PARTICLE_COUNTS.mobile : PARTICLE_COUNTS.desktopMap;
-      const spacing = isMobile ? 7 : 9;
+      const citecParticleCount = isMobile ? PARTICLE_COUNTS.mobileCitec : PARTICLE_COUNTS.desktopCitec;
+      const mapParticleCount = isMobile ? PARTICLE_COUNTS.mobileMap : PARTICLE_COUNTS.desktopMap;
+      const citecSpacing = isMobile ? PARTICLE_SPACING.mobileCitec : PARTICLE_SPACING.desktopCitec;
+      const mapSpacing = isMobile ? PARTICLE_SPACING.mobileMap : PARTICLE_SPACING.desktopMap;
       const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
 
       canvasElement.width = Math.round(sceneWidth * pixelRatio);
@@ -54,13 +55,27 @@ export function useParticlesToMap({ canvasRef, sceneRef }: ParticlesToMapRefs) {
         return;
       }
 
-      const logoSample = extractPointsFromMask(logoMask, sceneWidth, sceneHeight, citecParticleCount, spacing, placements.logo, {
-        jitter: false,
-      });
-      const mapSample = extractPointsFromMask(mapMask, sceneWidth, sceneHeight, mapParticleCount, spacing, placements.map);
+      const logoSample = extractPointsFromMask(
+        logoMask,
+        sceneWidth,
+        sceneHeight,
+        citecParticleCount,
+        citecSpacing,
+        placements.logo,
+        { jitter: false },
+      );
+      const mapSample = extractPointsFromMask(
+        mapMask,
+        sceneWidth,
+        sceneHeight,
+        mapParticleCount,
+        mapSpacing,
+        placements.map,
+      );
       const particles = buildParticles(logoSample.points, mapSample.points, sceneWidth, isMobile);
+      const shouldAnimateIntro = animateIntro && !reducedMotion && !introCompleted;
       const state = {
-        progress: animateIntro && !reducedMotion && !introCompleted ? 0 : 1,
+        progress: shouldAnimateIntro ? 0 : 1,
       };
 
       const paint = () => {
@@ -79,6 +94,9 @@ export function useParticlesToMap({ canvasRef, sceneRef }: ParticlesToMapRefs) {
 
       gsap.set(copyItems, { autoAlpha: 0, y: 28 });
 
+      const morphDuration = isMobile ? TIMING.mobileMorphSeconds : TIMING.desktopMorphSeconds;
+      const morphStart = TIMING.citecReadSeconds;
+
       timeline = gsap.timeline({
         defaults: { ease: "power3.out" },
         onComplete: () => {
@@ -86,16 +104,15 @@ export function useParticlesToMap({ canvasRef, sceneRef }: ParticlesToMapRefs) {
           finalizeHeroIntro(heroElement, copyItems);
           ScrollTrigger.refresh();
         },
+        onUpdate: paint,
       });
 
       timeline
         .to(state, {
-          delay: TIMING.citecReadSeconds,
-          duration: isMobile ? TIMING.mobileMorphSeconds : TIMING.desktopMorphSeconds,
-          ease: "power3.inOut",
-          onUpdate: paint,
+          duration: morphDuration,
+          ease: "sine.inOut",
           progress: 1,
-        })
+        }, morphStart)
         .to(
           copyItems,
           {
@@ -105,7 +122,7 @@ export function useParticlesToMap({ canvasRef, sceneRef }: ParticlesToMapRefs) {
             stagger: TIMING.copyRevealStagger,
             y: 0,
           },
-          `>-${TIMING.copyRevealOverlapSeconds}`,
+          morphStart + morphDuration - TIMING.copyRevealOverlapSeconds,
         );
     }
 

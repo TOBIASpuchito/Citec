@@ -1,4 +1,5 @@
 ---
+import BrandLogo from "@/components/ui/BrandLogo.astro";
 import { mainNavigation } from "@/data/navigation";
 
 const isHome = Astro.url.pathname === "/";
@@ -19,21 +20,13 @@ const isHome = Astro.url.pathname === "/";
     Saltar al contenido
   </a>
   <div class="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-    <a href="/" class="group flex items-center gap-3" aria-label="CITEC inicio">
-      <span
-        class:list={[
-          "grid h-10 w-10 place-items-center rounded-md text-sm font-black shadow-soft transition duration-300 ease-premium group-hover:-translate-y-0.5",
-          "bg-action-bg text-action-text",
-        ]}
-      >
-        CT
-      </span>
-      <span class="leading-none">
-        <span class="block font-display text-base font-black tracking-normal text-primary-text">CITEC</span>
-        <span class="mt-1 hidden text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-secondary-text sm:block">
-          Innovacion Ecuador
-        </span>
-      </span>
+    <a href="/" class="group shrink-0" aria-label="CITEC inicio">
+      <BrandLogo
+        layout="horizontal"
+        tone="color"
+        class="h-auto w-[11.75rem] transition duration-300 ease-premium group-hover:-translate-y-0.5 sm:w-[13.25rem]"
+        priority
+      />
     </a>
 
     <nav class="hidden items-center gap-1 md:flex" aria-label="Navegacion principal">

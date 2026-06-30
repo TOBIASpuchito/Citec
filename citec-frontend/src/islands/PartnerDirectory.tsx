@@ -88,7 +88,7 @@ export default function PartnerDirectory({ featuredOnly = false, limit }: Partne
           {filteredPartners.map((partner) => (
             <article
               key={partner.slug}
-              className="group relative flex min-h-[21rem] flex-col rounded-lg border border-citec-line/80 bg-white p-5 shadow-[0_14px_34px_rgba(13,39,66,0.07)] transition duration-300 ease-premium hover:-translate-y-1 hover:border-citec-cyan/55 hover:shadow-glass"
+              className="group relative flex min-h-[21rem] flex-col rounded-lg border border-citec-line/80 bg-white p-5 shadow-[0_14px_34px_rgba(27,36,48,0.07)] transition duration-300 ease-premium hover:-translate-y-1 hover:border-citec-cyan/55 hover:shadow-glass"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-center gap-3">

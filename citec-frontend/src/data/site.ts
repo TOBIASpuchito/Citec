@@ -9,7 +9,7 @@ export const site = {
   ogImage: "/og-image.png",
   language: "es-EC",
   locale: "es_EC",
-  themeColor: "#071526",
+  themeColor: "#2D368E",
   email: "info@citec.ec",
   phone: "+593 2 000 0000",
   address: "Quito, Ecuador",

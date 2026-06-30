@@ -1,28 +1,25 @@
 ---
+import BrandLogo from "@/components/ui/BrandLogo.astro";
 import { footerNavigation, mainNavigation } from "@/data/navigation";
 import { site } from "@/data/site";
 ---
 
-<footer class="border-t border-border-subtle/80 bg-surface/74">
+<footer class="border-t border-white/10 bg-citec-indigo text-white">
   <div class="mx-auto grid w-full max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.2fr_0.8fr_0.8fr] lg:px-8">
     <div>
-      <a href="/" class="inline-flex items-center gap-3">
-        <span class="grid h-11 w-11 place-items-center rounded-md bg-action-bg text-sm font-black text-action-text">CT</span>
-        <span>
-          <span class="block font-display text-lg font-black">CITEC</span>
-          <span class="text-sm font-medium text-secondary-text">Camara de Innovacion y Tecnologia Ecuatoriana</span>
-        </span>
+      <a href="/" class="inline-flex" aria-label="CITEC inicio">
+        <BrandLogo layout="horizontal" tone="white" class="h-auto w-full max-w-[23rem]" />
       </a>
-      <p class="mt-5 max-w-md text-sm leading-7 text-secondary-text">
+      <p class="mt-5 max-w-md text-sm leading-7 text-white/72">
         Un hub institucional para conectar empresas, regulacion, talento e innovacion en el ecosistema tecnologico ecuatoriano.
       </p>
     </div>
 
     <div>
-      <h2 class="text-sm font-black text-primary-text">Explorar</h2>
+      <h2 class="text-sm font-extrabold text-white">Explorar</h2>
       <div class="mt-4 grid gap-2">
         {[...mainNavigation, ...footerNavigation].map((item) => (
-          <a href={item.href} class="text-sm font-semibold text-secondary-text transition hover:text-accent-text">
+          <a href={item.href} class="text-sm font-semibold text-white/72 transition hover:text-citec-lime">
             {item.label}
           </a>
         ))}
@@ -30,15 +27,15 @@ import { site } from "@/data/site";
     </div>
 
     <div>
-      <h2 class="text-sm font-black text-primary-text">Contacto</h2>
-      <div class="mt-4 space-y-2 text-sm font-medium text-secondary-text">
+      <h2 class="text-sm font-extrabold text-white">Contacto</h2>
+      <div class="mt-4 space-y-2 text-sm font-medium text-white/72">
         <p>{site.address}</p>
-        <a class="block transition hover:text-accent-text" href={`mailto:${site.email}`}>{site.email}</a>
-        <a class="block transition hover:text-accent-text" href={site.socials.linkedin}>LinkedIn</a>
+        <a class="block transition hover:text-citec-lime" href={`mailto:${site.email}`}>{site.email}</a>
+        <a class="block transition hover:text-citec-lime" href={site.socials.linkedin}>LinkedIn</a>
       </div>
     </div>
   </div>
-  <div class="border-t border-border-subtle/80 px-4 py-5 text-center text-xs font-semibold uppercase tracking-[0.12em] text-secondary-text">
+  <div class="border-t border-white/10 px-4 py-5 text-center text-xs font-semibold uppercase tracking-[0.12em] text-white/62">
     © {new Date().getFullYear()} CITEC. Hub digital institucional.
   </div>
 </footer>

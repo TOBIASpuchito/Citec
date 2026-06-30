@@ -1,8 +1,28 @@
 import { MASK_DARK_THRESHOLD, MASK_SOURCES } from "./constants";
-import type { Bounds } from "./types";
+import type { Bounds, MaskPixelMode } from "./types";
 
 let maskPromise: Promise<[HTMLImageElement, HTMLImageElement]> | null = null;
-const contentBoundsCache = new WeakMap<HTMLImageElement, Bounds>();
+const contentBoundsCache = new WeakMap<HTMLImageElement, Map<MaskPixelMode, Bounds>>();
+
+export function isMaskPixel(
+  red: number,
+  green: number,
+  blue: number,
+  alpha: number,
+  pixelMode: MaskPixelMode,
+) {
+  if (alpha <= 12) {
+    return false;
+  }
+
+  if (pixelMode === "alpha") {
+    return true;
+  }
+
+  const luminance = red * 0.2126 + green * 0.7152 + blue * 0.0722;
+
+  return luminance <= MASK_DARK_THRESHOLD;
+}
 
 function loadMask(src: string) {
   return new Promise<HTMLImageElement>((resolve, reject) => {
@@ -23,8 +43,8 @@ export function loadMasks() {
   return maskPromise;
 }
 
-export function getMaskContentBounds(image: HTMLImageElement): Bounds {
-  const cachedBounds = contentBoundsCache.get(image);
+export function getMaskContentBounds(image: HTMLImageElement, pixelMode: MaskPixelMode): Bounds {
+  const cachedBounds = contentBoundsCache.get(image)?.get(pixelMode);
 
   if (cachedBounds) {
     return cachedBounds;
@@ -54,9 +74,7 @@ export function getMaskContentBounds(image: HTMLImageElement): Bounds {
       const green = data[pixelIndex + 1] ?? 255;
       const blue = data[pixelIndex + 2] ?? 255;
       const alpha = data[pixelIndex + 3] ?? 255;
-      const luminance = red * 0.2126 + green * 0.7152 + blue * 0.0722;
-
-      if (alpha > 12 && luminance <= MASK_DARK_THRESHOLD) {
+      if (isMaskPixel(red, green, blue, alpha, pixelMode)) {
         minX = Math.min(minX, x);
         minY = Math.min(minY, y);
         maxX = Math.max(maxX, x);
@@ -70,7 +88,9 @@ export function getMaskContentBounds(image: HTMLImageElement): Bounds {
       ? { height: maxY - minY + 1, width: maxX - minX + 1, x: minX, y: minY }
       : { height: image.naturalHeight, width: image.naturalWidth, x: 0, y: 0 };
 
-  contentBoundsCache.set(image, bounds);
+  const imageCache = contentBoundsCache.get(image) ?? new Map<MaskPixelMode, Bounds>();
+  imageCache.set(pixelMode, bounds);
+  contentBoundsCache.set(image, imageCache);
 
   return bounds;
 }

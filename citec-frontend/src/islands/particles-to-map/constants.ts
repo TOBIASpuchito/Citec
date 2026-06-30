@@ -1,7 +1,15 @@
 export const PARTICLE_COUNTS = {
   desktopCitec: 3200,
   desktopMap: 1200,
-  mobile: 1050,
+  mobileCitec: 1050,
+  mobileMap: 1050,
+} as const;
+
+export const PARTICLE_SPACING = {
+  desktopCitec: 9,
+  desktopMap: 9,
+  mobileCitec: 7,
+  mobileMap: 7,
 } as const;
 
 export const MASK_SOURCES = {
@@ -17,7 +25,10 @@ export const TIMING = {
   copyRevealOverlapSeconds: 0.28,
   copyRevealStagger: 0.05,
   desktopMorphSeconds: 1.7,
+  logoDissolveSeconds: 0.9,
   mobileMorphSeconds: 1.35,
+  particleRevealDelaySeconds: 0.42,
+  particleRevealSeconds: 0.6,
   resizeDebounceMs: 180,
 } as const;
 

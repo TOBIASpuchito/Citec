@@ -19,6 +19,8 @@ export type Point = {
   y: number;
 };
 
+export type MaskPixelMode = "alpha" | "dark";
+
 export type Particle = {
   color: string;
   delay: number;
@@ -33,10 +35,12 @@ export type Particle = {
 export type MaskExtractionOptions = {
   cropToContent?: boolean;
   jitter?: boolean;
+  pixelMode?: MaskPixelMode;
 };
 
 export type MaskSample = {
   bounds: Bounds;
+  imageBounds: Bounds;
   points: Point[];
 };
 

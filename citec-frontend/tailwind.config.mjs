@@ -6,6 +6,8 @@ export default {
       fontFamily: {
         sans: ['var(--citec-font-sans)'],
         display: ['var(--citec-font-display)'],
+        subtitle: ['var(--citec-font-subtitle)'],
+        'subtitle-alt': ['var(--citec-font-subtitle-alt)'],
       },
       colors: {
         'primary-text': 'rgb(var(--color-primary-text-rgb) / <alpha-value>)',
@@ -20,6 +22,11 @@ export default {
         'action-bg-hover': 'rgb(var(--color-action-bg-hover-rgb) / <alpha-value>)',
         'action-text': 'rgb(var(--color-action-text-rgb) / <alpha-value>)',
         citec: {
+          indigo: 'rgb(var(--citec-indigo-rgb) / <alpha-value>)',
+          lime: 'rgb(var(--citec-lime-rgb) / <alpha-value>)',
+          charcoal: 'rgb(var(--citec-charcoal-rgb) / <alpha-value>)',
+          sky: 'rgb(var(--citec-sky-rgb) / <alpha-value>)',
+          teal: 'rgb(var(--citec-teal-rgb) / <alpha-value>)',
           ink: 'rgb(var(--citec-ink-rgb) / <alpha-value>)',
           'ink-soft': 'rgb(var(--citec-ink-soft-rgb) / <alpha-value>)',
           navy: 'rgb(var(--citec-navy-rgb) / <alpha-value>)',

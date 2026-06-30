@@ -11,11 +11,11 @@ export const GET: APIRoute = () =>
       start_url: "/",
       scope: "/",
       display: "standalone",
-      background_color: "#f7fbfd",
+      background_color: "#ffffff",
       theme_color: site.themeColor,
       icons: [
         {
-          src: "/favicon.svg",
+          src: "/brand/citec-logo-stacked-color.svg",
           sizes: "any",
           type: "image/svg+xml",
           purpose: "any maskable",
